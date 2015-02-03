@@ -1,6 +1,10 @@
 Getting Started
 ===============
 
+Using Swift?
+------------
+If you're using Swift and want to use the Catalyze iOS SDK, all you have to do is follow [this guide](https://github.com/catalyzeio/catalyze-ios-sdk/wiki/Using-the-Catalyze-iOS-SDK-with-Swift)!.
+
 Migrating to version 3.X?
 -------------------------
 If you are upgrading from version 2.X to version 3.X checkout out the [migration guide](https://github.com/catalyzeio/catalyze-ios-sdk/wiki/ios-3.0-migration-guide) to learn about the significant changes and how you can quickly get up to speed! Or if you're just getting started for the first time keep reading!
