@@ -86,29 +86,13 @@
 
 /** @name Retrieve */
 
-/**
- Performs the query asynchronously.  This should only be called after setting at minimum, the
- queryField and queryValue.  Upon completion of the request, the CatalyzeArrayResultBlock is 
- performed with the results of the query.
- 
- @param block the completion block to be executed upon the request's completion
- */
-- (void)retrieveInBackgroundWithBlock:(CatalyzeArrayResultBlock)block;
+- (void)retrieveAllEntriesInBackgroundWithBlock:(CatalyzeArrayResultBlock)block;
+- (void)retrieveAllEntriesInBackgroundWithTarget:(id)target selector:(SEL)selector;
 
-/**
- Performs the query asynchronously.  This should only be called after setting at minimum, the
- queryField and queryValue.  Upon completion of the request, the given selector will be 
- performed on the given target with the array of results as the object of the selector.
- 
- **NOTE:**
- The selector is performed on the target on the **Main Thread** see
- [[NSThread mainThread]](http://bit.ly/11Z9D47)
- 
- @param target the target to perform the given selector on the **Main Thread**
- upon the request's completion
- @param selector the selector to be performed on the given target on the **Main Thread**
- upon the request's completion
- */
+- (void)retrieveInBackgroundWithBlock:(CatalyzeArrayResultBlock)block;
 - (void)retrieveInBackgroundWithTarget:(id)target selector:(SEL)selector;
+
+- (void)retrieveInBackgroundForUsersId:(NSString *)usersId block:(CatalyzeArrayResultBlock)block;
+- (void)retrieveInBackgroundForUsersId:(NSString *)usersId target:(id)target selector:(SEL)selector;
 
 @end
