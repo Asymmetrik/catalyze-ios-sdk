@@ -15,6 +15,8 @@
  */
 
 #import "CatalyzeQuery.h"
+#import "CatalyzeUser.h"
+#import "CatalyzeHTTPManager.h"
 
 @implementation CatalyzeQuery
 @synthesize catalyzeClassName = _catalyzeClassName;
@@ -50,16 +52,8 @@
 #pragma mark -
 #pragma mark Retrieve
 
-- (void)retrieveInBackgroundWithBlock:(CatalyzeArrayResultBlock)block {
-    NSString *queryFieldParam = @"";
-    if (_queryField && ![_queryField isEqualToString:@""]) {
-        queryFieldParam = [NSString stringWithFormat:@"&field=%@", _queryField];
-    }
-    NSString *queryValueParam = @"";
-    if (_queryValue && ![_queryValue isEqualToString:@""]) {
-        queryValueParam = [NSString stringWithFormat:@"&searchBy=%@", _queryValue];
-    }
-    [CatalyzeHTTPManager doGet:[NSString stringWithFormat:@"/classes/%@/query?pageSize=%i&pageNumber=%i%@%@",[self catalyzeClassName], _pageSize, _pageNumber, queryFieldParam, queryValueParam] block:^(int status, NSString *response, NSError *error) {
+- (void)retrieveAllEntriesInBackgroundWithBlock:(CatalyzeArrayResultBlock)block {
+    [CatalyzeHTTPManager doGet:[NSString stringWithFormat:@"/classes/%@/query?pageSize=%i&pageNumber=%i%@%@",[CatalyzeHTTPManager percentEncode:[self catalyzeClassName]], _pageSize, _pageNumber, [self constructQueryFieldParam], [self constructQueryValueParam]] block:^(int status, NSString *response, NSError *error) {
         if (block) {
             NSLog(@"response: %@", response);
             block([NSJSONSerialization JSONObjectWithData:[response dataUsingEncoding:NSUTF8StringEncoding] options:0 error:nil], error);
@@ -67,10 +61,58 @@
     }];
 }
 
+- (void)retrieveAllEntriesInBackgroundWithTarget:(id)target selector:(SEL)selector {
+    [self retrieveAllEntriesInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
+        [target performSelector:selector onThread:[NSThread mainThread] withObject:objects waitUntilDone:NO];
+    }];
+}
+
+- (void)retrieveInBackgroundWithBlock:(CatalyzeArrayResultBlock)block {
+    [self retrieveInBackgroundForUsersId:[[CatalyzeUser currentUser] usersId] block:block];
+}
+
 - (void)retrieveInBackgroundWithTarget:(id)target selector:(SEL)selector {
     [self retrieveInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
         [target performSelector:selector onThread:[NSThread mainThread] withObject:objects waitUntilDone:NO];
     }];
+}
+
+- (void)retrieveInBackgroundForUsersId:(NSString *)usersId block:(CatalyzeArrayResultBlock)block {
+    [CatalyzeHTTPManager doGet:[NSString stringWithFormat:@"/classes/%@/query/%@?pageSize=%i&pageNumber=%i%@%@",[CatalyzeHTTPManager percentEncode:[self catalyzeClassName]], usersId, _pageSize, _pageNumber, [self constructQueryFieldParam], [self constructQueryValueParam]] block:^(int status, NSString *response, NSError *error) {
+        if (block) {
+            NSLog(@"response: %@", response);
+            block([NSJSONSerialization JSONObjectWithData:[response dataUsingEncoding:NSUTF8StringEncoding] options:0 error:nil], error);
+        }
+    }];
+}
+
+- (void)retrieveInBackgroundForUsersId:(NSString *)usersId target:(id)target selector:(SEL)selector {
+    [self retrieveInBackgroundForUsersId:usersId block:^(NSArray *objects, NSError *error) {
+        [target performSelector:selector onThread:[NSThread mainThread] withObject:objects waitUntilDone:NO];
+    }];
+}
+
+#pragma mark -
+#pragma mark Helpers
+
+- (NSString *)constructQueryFieldParam {
+    NSString *queryFieldParam = @"";
+    if (_queryField) {
+        if (![_queryField isKindOfClass:[NSString class]] || ([_queryField isKindOfClass:[NSString class]] && ![_queryField isEqualToString:@""])) {
+            queryFieldParam = [NSString stringWithFormat:@"&field=%@", [CatalyzeHTTPManager percentEncode:_queryField]];
+        }
+    }
+    return queryFieldParam;
+}
+
+- (NSString *)constructQueryValueParam {
+    NSString *queryValueParam = @"";
+    if (_queryValue) {
+        if (![_queryValue isKindOfClass:[NSString class]] || ([_queryValue isKindOfClass:[NSString class]] && ![_queryValue isEqualToString:@""])) {
+            queryValueParam = [NSString stringWithFormat:@"&searchBy=%@", [CatalyzeHTTPManager percentEncode:_queryValue]];
+        }
+    }
+    return queryValueParam;
 }
 
 @end

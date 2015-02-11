@@ -83,4 +83,11 @@
  */
 + (void)doDelete:(NSString *)urlString block:(CatalyzeHTTPResponseBlock)block;
 
+/** @name Helpers */
+
+/**
+ Percent encode a string ready for use in a URL.
+ */
++ (id)percentEncode:(id)string;
+
 @end

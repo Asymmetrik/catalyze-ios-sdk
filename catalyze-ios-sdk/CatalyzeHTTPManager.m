@@ -100,4 +100,11 @@
     }];
 }
 
++ (id)percentEncode:(id)string {
+    if ([string isKindOfClass:[NSString class]]) {
+        string = [string stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+    }
+    return string;
+}
+
 @end
