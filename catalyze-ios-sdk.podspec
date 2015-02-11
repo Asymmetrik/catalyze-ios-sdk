@@ -1,7 +1,7 @@
 Pod::Spec.new do |spec|
 
     spec.name              = 'catalyze-ios-sdk'
-    spec.version           = '2.5'
+    spec.version           = '2.5.1'
     spec.summary           = 'SDK for interacting with the Catalyze API'
     spec.homepage          = 'https://github.com/catalyzeio/catalyze-ios-sdk'
     spec.license           = {
