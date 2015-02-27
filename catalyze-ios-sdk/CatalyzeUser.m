@@ -188,7 +188,7 @@ static CatalyzeUser *currentUser;
     if (![dob isKindOfClass:[NSDate class]]) {
         NSDateFormatter *format = [[NSDateFormatter alloc] init];
         [format setTimeZone:[NSTimeZone timeZoneWithAbbreviation:@"UTC"]];
-        [format setDateFormat:@"yyyy-MM-dd'T'HH:mm:ss'Z'"];
+        [format setDateFormat:@"yyyy-MM-dd"];
         _dob = [format dateFromString:(NSString *)dob];
     } else {
         _dob = dob;
