@@ -51,7 +51,7 @@
         XCTAssertEqualObjects(result, [CatalyzeUser currentUser], @"CurrentUser was not assigned to the logged in user");
         finished = YES;
     } failure:^(NSDictionary *result, int status, NSError *error) {
-        XCTFail(@"Could not sign up a new user");
+        XCTFail(@"Could not sign up a new user: %@", result);
     }];
     NSDate *loopUntil = [NSDate dateWithTimeIntervalSinceNow:10];
     while (finished == NO && [loopUntil timeIntervalSinceNow] > 0) {
@@ -153,46 +153,51 @@
     __block BOOL finished = NO;
     Email *email = [[Email alloc] init];
     email.primary = [self generateEmail];
-    [CatalyzeUser signUpWithUsernameInBackground:[self generateUsername] email:email name:[[Name alloc] init] password:secondaryPassword.copy success:^(CatalyzeUser *result) {
-        [result deleteInBackgroundWithSuccess:^(id result) {
-            XCTAssertNil([CatalyzeUser currentUser], @"CurrentUser not unset on delete");
-            
-            CatalyzeUser *userResult = (CatalyzeUser *)result;
-            XCTAssertNil(userResult.usersId, @"Previous CatalyzerUser properties not unset on delete");
-            XCTAssertNil(userResult.active, @"Previous CatalyzerUser properties not unset on delete");
-            XCTAssertNil(userResult.createdAt, @"Previous CatalyzerUser properties not unset on delete");
-            XCTAssertNil(userResult.updatedAt, @"Previous CatalyzerUser properties not unset on delete");
-            XCTAssertNil(userResult.username, @"Previous CatalyzerUser properties not unset on delete");
-            XCTAssertNil(userResult.email, @"Previous CatalyzerUser properties not unset on delete");
-            XCTAssertNil(userResult.name, @"Previous CatalyzerUser properties not unset on delete");
-            XCTAssertNil(userResult.dob, @"Previous CatalyzerUser properties not unset on delete");
-            XCTAssertNil(userResult.age, @"Previous CatalyzerUser properties not unset on delete");
-            XCTAssertNil(userResult.phoneNumber, @"Previous CatalyzerUser properties not unset on delete");
-            XCTAssertNil(userResult.addresses, @"Previous CatalyzerUser properties not unset on delete");
-            XCTAssertNil(userResult.gender, @"Previous CatalyzerUser properties not unset on delete");
-            XCTAssertNil(userResult.maritalStatus, @"Previous CatalyzerUser properties not unset on delete");
-            XCTAssertNil(userResult.religion, @"Previous CatalyzerUser properties not unset on delete");
-            XCTAssertNil(userResult.race, @"Previous CatalyzerUser properties not unset on delete");
-            XCTAssertNil(userResult.ethnicity, @"Previous CatalyzerUser properties not unset on delete");
-            XCTAssertNil(userResult.guardians, @"Previous CatalyzerUser properties not unset on delete");
-            XCTAssertNil(userResult.confCode, @"Previous CatalyzerUser properties not unset on delete");
-            XCTAssertNil(userResult.languages, @"Previous CatalyzerUser properties not unset on delete");
-            XCTAssertNil(userResult.socialIds, @"Previous CatalyzerUser properties not unset on delete");
-            XCTAssertNil(userResult.mrns, @"Previous CatalyzerUser properties not unset on delete");
-            XCTAssertNil(userResult.healthPlans, @"Previous CatalyzerUser properties not unset on delete");
-            XCTAssertNil(userResult.avatar, @"Previous CatalyzerUser properties not unset on delete");
-            XCTAssertNil(userResult.ssn, @"Previous CatalyzerUser properties not unset on delete");
-            XCTAssertNil(userResult.profilePhoto, @"Previous CatalyzerUser properties not unset on delete");
-            XCTAssertNil(userResult.type, @"Previous CatalyzerUser properties not unset on delete");
-            XCTAssertNil(userResult.extras, @"Previous CatalyzerUser properties not unset on delete");
-            
-            XCTAssertFalse([result isAuthenticated], @"Session information not cleared on delete");
-            finished = YES;
+    NSString *username = [self generateUsername];
+    [CatalyzeUser signUpWithUsernameInBackground:username email:email name:[[Name alloc] init] password:secondaryPassword.copy success:^(CatalyzeUser *result) {
+        [CatalyzeUser logInWithUsernameInBackground:username password:secondaryPassword.copy success:^(CatalyzeUser *result) {
+            [result deleteInBackgroundWithSuccess:^(id result) {
+                XCTAssertNil([CatalyzeUser currentUser], @"CurrentUser not unset on delete");
+                
+                CatalyzeUser *userResult = (CatalyzeUser *)result;
+                XCTAssertNil(userResult.usersId, @"Previous CatalyzerUser properties not unset on delete");
+                XCTAssertNil(userResult.active, @"Previous CatalyzerUser properties not unset on delete");
+                XCTAssertNil(userResult.createdAt, @"Previous CatalyzerUser properties not unset on delete");
+                XCTAssertNil(userResult.updatedAt, @"Previous CatalyzerUser properties not unset on delete");
+                XCTAssertNil(userResult.username, @"Previous CatalyzerUser properties not unset on delete");
+                XCTAssertNil(userResult.email, @"Previous CatalyzerUser properties not unset on delete");
+                XCTAssertNil(userResult.name, @"Previous CatalyzerUser properties not unset on delete");
+                XCTAssertNil(userResult.dob, @"Previous CatalyzerUser properties not unset on delete");
+                XCTAssertNil(userResult.age, @"Previous CatalyzerUser properties not unset on delete");
+                XCTAssertNil(userResult.phoneNumber, @"Previous CatalyzerUser properties not unset on delete");
+                XCTAssertNil(userResult.addresses, @"Previous CatalyzerUser properties not unset on delete");
+                XCTAssertNil(userResult.gender, @"Previous CatalyzerUser properties not unset on delete");
+                XCTAssertNil(userResult.maritalStatus, @"Previous CatalyzerUser properties not unset on delete");
+                XCTAssertNil(userResult.religion, @"Previous CatalyzerUser properties not unset on delete");
+                XCTAssertNil(userResult.race, @"Previous CatalyzerUser properties not unset on delete");
+                XCTAssertNil(userResult.ethnicity, @"Previous CatalyzerUser properties not unset on delete");
+                XCTAssertNil(userResult.guardians, @"Previous CatalyzerUser properties not unset on delete");
+                XCTAssertNil(userResult.confCode, @"Previous CatalyzerUser properties not unset on delete");
+                XCTAssertNil(userResult.languages, @"Previous CatalyzerUser properties not unset on delete");
+                XCTAssertNil(userResult.socialIds, @"Previous CatalyzerUser properties not unset on delete");
+                XCTAssertNil(userResult.mrns, @"Previous CatalyzerUser properties not unset on delete");
+                XCTAssertNil(userResult.healthPlans, @"Previous CatalyzerUser properties not unset on delete");
+                XCTAssertNil(userResult.avatar, @"Previous CatalyzerUser properties not unset on delete");
+                XCTAssertNil(userResult.ssn, @"Previous CatalyzerUser properties not unset on delete");
+                XCTAssertNil(userResult.profilePhoto, @"Previous CatalyzerUser properties not unset on delete");
+                XCTAssertNil(userResult.type, @"Previous CatalyzerUser properties not unset on delete");
+                XCTAssertNil(userResult.extras, @"Previous CatalyzerUser properties not unset on delete");
+                
+                XCTAssertFalse([result isAuthenticated], @"Session information not cleared on delete");
+                finished = YES;
+            } failure:^(NSDictionary *result, int status, NSError *error) {
+                XCTFail(@"Could not delete a user: %@", result);
+            }];
         } failure:^(NSDictionary *result, int status, NSError *error) {
-            XCTFail(@"Could not delete a user: %@", result);
+            XCTFail(@"Could not login with the new user: %@", result);
         }];
     } failure:^(NSDictionary *result, int status, NSError *error) {
-        XCTFail(@"Could not sign up a new user");
+        XCTFail(@"Could not sign up a new user: %@", result);
     }];
     NSDate *loopUntil = [NSDate dateWithTimeIntervalSinceNow:10];
     while (finished == NO && [loopUntil timeIntervalSinceNow] > 0) {

@@ -62,7 +62,7 @@ static const NSString * const className = @"medications";
 + (void)tearDown {
     __block BOOL finished = NO;
     
-    [CatalyzeHTTPManager doDelete:[NSString stringWithFormat:@"/classes/%@", className] success:^(id result) {
+    [CatalyzeHTTPManager doDelete:[NSString stringWithFormat:@"/classes/%@", className] withParams:nil success:^(id result) {
         finished = YES;
     } failure:^(NSDictionary *result, int status, NSError *error) {
         [NSException raise:@"CustomClassException" format:@"Could not delete the custom class"];

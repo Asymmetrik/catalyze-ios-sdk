@@ -49,9 +49,14 @@
 }
 
 + (void)doGet:(NSString *)urlString success:(CatalyzeSuccessBlock)success failure:(CatalyzeFailureBlock)failure {
+    NSLog(@"You are using a deprecated method! [CatalyzeHTTPManager doGet:success:failure:]. Please use [CatalyzeHTTPManager doGet:withParams:success:failure:] instead.");
+    [CatalyzeHTTPManager doGet:urlString withParams:nil success:success failure:failure];
+}
+
++ (void)doGet:(NSString *)urlString withParams:(NSDictionary *)params success:(CatalyzeSuccessBlock)success failure:(CatalyzeFailureBlock)failure {
     [CatalyzeHTTPManager updateHeaders];
     
-    [[CatalyzeHTTPManager httpClient] GET:[NSString stringWithFormat:@"%@%@",kCatalyzeAPIVersionPath,urlString] parameters:nil success:[CatalyzeHTTPManager successBlock:success] failure:[CatalyzeHTTPManager failureBlock:failure]];
+    [[CatalyzeHTTPManager httpClient] GET:[NSString stringWithFormat:@"%@%@",kCatalyzeAPIVersionPath,urlString] parameters:params success:[CatalyzeHTTPManager successBlock:success] failure:[CatalyzeHTTPManager failureBlock:failure]];
 }
 
 + (void)doPost:(NSString *)urlString withParams:(NSDictionary *)params success:(CatalyzeSuccessBlock)success failure:(CatalyzeFailureBlock)failure {
@@ -67,15 +72,24 @@
 }
 
 + (void)doDelete:(NSString *)urlString success:(CatalyzeSuccessBlock)success failure:(CatalyzeFailureBlock)failure {
+    NSLog(@"You are using a deprecated method! [CatalyzeHTTPManager doDelete:success:failure:]. Please use [CatalyzeHTTPManager doDelete:withParams:success:failure:] instead.");
+    [CatalyzeHTTPManager doDelete:urlString withParams:nil success:success failure:failure];
+}
+
++ (void)doDelete:(NSString *)urlString withParams:(NSDictionary *)params success:(CatalyzeSuccessBlock)success failure:(CatalyzeFailureBlock)failure {
     [CatalyzeHTTPManager updateHeaders];
     
-    [[CatalyzeHTTPManager httpClient] DELETE:[NSString stringWithFormat:@"%@%@",kCatalyzeAPIVersionPath,urlString] parameters:nil success:[CatalyzeHTTPManager successBlock:success] failure:[CatalyzeHTTPManager failureBlock:failure]];
+    [[CatalyzeHTTPManager httpClient] DELETE:[NSString stringWithFormat:@"%@%@",kCatalyzeAPIVersionPath,urlString] parameters:params success:[CatalyzeHTTPManager successBlock:success] failure:[CatalyzeHTTPManager failureBlock:failure]];
 }
 
 + (void (^)(AFHTTPRequestOperation *operation, id responseObject))successBlock:(CatalyzeSuccessBlock)success {
     return ^(AFHTTPRequestOperation *operation, id responseObject) {
         if (success) {
-            success([NSJSONSerialization JSONObjectWithData:responseObject options:0 error:nil]);
+            id jsonResponse = nil;
+            if (responseObject) {
+                jsonResponse = [NSJSONSerialization JSONObjectWithData:responseObject options:0 error:nil];
+            }
+            success(jsonResponse);
         }
     };
 }
@@ -83,7 +97,11 @@
 + (void (^)(AFHTTPRequestOperation *operation, id responseObject))failureBlock:(CatalyzeFailureBlock)failure {
     return ^(AFHTTPRequestOperation *operation, NSError *error) {
         if (failure) {
-            failure([NSJSONSerialization JSONObjectWithData:[operation responseObject] options:0 error:nil], (int)[[operation response] statusCode], error);
+            id jsonResponse = nil;
+            if (operation && [operation responseObject]) {
+                jsonResponse = [NSJSONSerialization JSONObjectWithData:[operation responseObject] options:0 error:nil];
+            }
+            failure(jsonResponse, (int)[[operation response] statusCode], error);
         }
     };
 }

@@ -30,6 +30,7 @@
  can simply download AFNetworking directly at the above link.
  */
 
+#include <AvailabilityMacros.h>
 #import <Foundation/Foundation.h>
 #import "CatalyzeConstants.h"
 
@@ -38,14 +39,27 @@
 /** @name GET */
 
 /**
- Performs a GET request at the given url and executes the CatalyzeHTTPResponseBlock 
- upon completion of the request whether it succeeded or failed.  
+ Performs a GET request at the given url and executes the CatalyzeHTTPResponseBlock
+ upon completion of the request whether it succeeded or failed.
+ 
+ This method expects you to construct any query parameters in the URL string yourself.
  
  @param urlString the url to direct the request to
  @param success the completion block to be executed upon the request's successful completion
  @param failure the completion block to be executed if the request fails
  */
-+ (void)doGet:(NSString *)urlString success:(CatalyzeSuccessBlock)success failure:(CatalyzeFailureBlock)failure;
++ (void)doGet:(NSString *)urlString success:(CatalyzeSuccessBlock)success failure:(CatalyzeFailureBlock)failure DEPRECATED_MSG_ATTRIBUTE("use doGet:withParams:success:failure: instead");
+
+/**
+ Performs a GET request at the given url and executes the CatalyzeHTTPResponseBlock
+ upon completion of the request whether it succeeded or failed.
+ 
+ @param urlString the url to direct the request to
+ @param params the key value pairs to be set as query parameters
+ @param success the completion block to be executed upon the request's successful completion
+ @param failure the completion block to be executed if the request fails
+ */
++ (void)doGet:(NSString *)urlString withParams:(NSDictionary *)params success:(CatalyzeSuccessBlock)success failure:(CatalyzeFailureBlock)failure;
 
 /** @name POST */
 
@@ -81,11 +95,24 @@
  Performs a DELETE request at the given url and executes the CatalyzeHTTPResponseBlock
  upon completion of the request whether it succeeded or failed.
  
+ This method expects you to construct any query parameters in the URL string yourself.
+ 
  @param urlString the url to direct the request to
  @param success the completion block to be executed upon the request's successful completion
  @param failure the completion block to be executed if the request fails
  */
-+ (void)doDelete:(NSString *)urlString success:(CatalyzeSuccessBlock)success failure:(CatalyzeFailureBlock)failure;
++ (void)doDelete:(NSString *)urlString success:(CatalyzeSuccessBlock)success failure:(CatalyzeFailureBlock)failure DEPRECATED_MSG_ATTRIBUTE("use doDelete:withParams:success:failure: instead");
+
+/**
+ Performs a DELETE request at the given url and executes the CatalyzeHTTPResponseBlock
+ upon completion of the request whether it succeeded or failed.
+ 
+ @param urlString the url to direct the request to
+ @param params the key value pairs to be set as query parameters
+ @param success the completion block to be executed upon the request's successful completion
+ @param failure the completion block to be executed if the request fails
+ */
++ (void)doDelete:(NSString *)urlString withParams:(NSDictionary *)params success:(CatalyzeSuccessBlock)success failure:(CatalyzeFailureBlock)failure;
 
 + (NSString *)percentEncode:(NSString *)string;
 

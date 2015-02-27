@@ -23,6 +23,7 @@
 
 /* Begin PBXBuildFile section */
 		271D663A19AFB571004FED88 /* CatalyzeQueryTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 271D663919AFB571004FED88 /* CatalyzeQueryTest.m */; };
+		272D2DD91AA0D96500F93DDA /* CatalyzeStore.m in Sources */ = {isa = PBXBuildFile; fileRef = 272D2DD81AA0D96500F93DDA /* CatalyzeStore.m */; };
 		274833CC19A3E68100F3B940 /* Catalyze.m in Sources */ = {isa = PBXBuildFile; fileRef = 27B9C27417CBBAC600B8FA02 /* Catalyze.m */; };
 		274833CD19A3E68B00F3B940 /* CatalyzeHTTPManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 27B9C27717CBBAC600B8FA02 /* CatalyzeHTTPManager.m */; };
 		274833CE19A3E68B00F3B940 /* CatalyzeEntry.m in Sources */ = {isa = PBXBuildFile; fileRef = 27B9C27917CBBAC600B8FA02 /* CatalyzeEntry.m */; };
@@ -86,7 +87,6 @@
 		278FBAF119A79FE900FC41C4 /* CatalyzeObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 278FBAF019A79FE900FC41C4 /* CatalyzeObject.m */; };
 		278FBAF219A7A12700FC41C4 /* CatalyzeObject.h in Headers */ = {isa = PBXBuildFile; fileRef = 278FBAEF19A79FE900FC41C4 /* CatalyzeObject.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		278FBAF319A7A12E00FC41C4 /* CatalyzeObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 278FBAF019A79FE900FC41C4 /* CatalyzeObject.m */; };
-		279207E419B7F2990090AFBF /* CatalyzeStore.m in Sources */ = {isa = PBXBuildFile; fileRef = 279207E319B7F2990090AFBF /* CatalyzeStore.m */; };
 		279602D519742F9B009BAD41 /* AFNetworkActivityLogger.m in Sources */ = {isa = PBXBuildFile; fileRef = 279602D419742F9B009BAD41 /* AFNetworkActivityLogger.m */; };
 		279602E919743284009BAD41 /* AFHTTPRequestOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 279602D719743284009BAD41 /* AFHTTPRequestOperation.m */; };
 		279602EA19743284009BAD41 /* AFHTTPRequestOperationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 279602D919743284009BAD41 /* AFHTTPRequestOperationManager.m */; };
@@ -141,6 +141,8 @@
 
 /* Begin PBXFileReference section */
 		271D663919AFB571004FED88 /* CatalyzeQueryTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CatalyzeQueryTest.m; sourceTree = "<group>"; };
+		272D2DD71AA0D96500F93DDA /* CatalyzeStore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CatalyzeStore.h; sourceTree = "<group>"; };
+		272D2DD81AA0D96500F93DDA /* CatalyzeStore.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CatalyzeStore.m; sourceTree = "<group>"; };
 		274A9FBE19ABEC6D00DB7039 /* CatalyzeUserTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CatalyzeUserTest.m; sourceTree = "<group>"; };
 		274A9FC019ABECBB00DB7039 /* CatalyzeEntryTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CatalyzeEntryTest.m; sourceTree = "<group>"; };
 		274A9FC219ABF27A00DB7039 /* NSObject+Properties.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+Properties.h"; sourceTree = "<group>"; };
@@ -164,8 +166,6 @@
 		278FBAED19A6D68600FC41C4 /* testFile.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = testFile.txt; path = resources/testFile.txt; sourceTree = "<group>"; };
 		278FBAEF19A79FE900FC41C4 /* CatalyzeObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CatalyzeObject.h; sourceTree = "<group>"; };
 		278FBAF019A79FE900FC41C4 /* CatalyzeObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CatalyzeObject.m; sourceTree = "<group>"; };
-		279207E219B7F2990090AFBF /* CatalyzeStore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CatalyzeStore.h; sourceTree = "<group>"; };
-		279207E319B7F2990090AFBF /* CatalyzeStore.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CatalyzeStore.m; sourceTree = "<group>"; };
 		279602D319742F9B009BAD41 /* AFNetworkActivityLogger.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFNetworkActivityLogger.h; sourceTree = "<group>"; };
 		279602D419742F9B009BAD41 /* AFNetworkActivityLogger.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFNetworkActivityLogger.m; sourceTree = "<group>"; };
 		279602D619743284009BAD41 /* AFHTTPRequestOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFHTTPRequestOperation.h; sourceTree = "<group>"; };
@@ -290,15 +290,6 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
-		279207DB19B7F0770090AFBF /* CatalyzeHealthKit */ = {
-			isa = PBXGroup;
-			children = (
-				279207E219B7F2990090AFBF /* CatalyzeStore.h */,
-				279207E319B7F2990090AFBF /* CatalyzeStore.m */,
-			);
-			path = CatalyzeHealthKit;
-			sourceTree = "<group>";
-		};
 		279602D219742F9B009BAD41 /* AFNetworkActivityLogger */ = {
 			isa = PBXGroup;
 			children = (
@@ -344,7 +335,6 @@
 		27B9C24D17CBB9B500B8FA02 /* catalyze-ios-sdk */ = {
 			isa = PBXGroup;
 			children = (
-				279207DB19B7F0770090AFBF /* CatalyzeHealthKit */,
 				27B9C28617CBBAD300B8FA02 /* Libraries */,
 				27B9C27317CBBAC600B8FA02 /* Catalyze.h */,
 				27B9C27417CBBAC600B8FA02 /* Catalyze.m */,
@@ -352,6 +342,8 @@
 				275658DA18DFC9B400C3D5D1 /* CatalyzeObjectProtocol.h */,
 				27B9C27617CBBAC600B8FA02 /* CatalyzeHTTPManager.h */,
 				27B9C27717CBBAC600B8FA02 /* CatalyzeHTTPManager.m */,
+				272D2DD71AA0D96500F93DDA /* CatalyzeStore.h */,
+				272D2DD81AA0D96500F93DDA /* CatalyzeStore.m */,
 				278FBAE719A6BE4900FC41C4 /* CatalyzeFileManager.h */,
 				278FBAE819A6BE4900FC41C4 /* CatalyzeFileManager.m */,
 				27B9C27817CBBAC600B8FA02 /* CatalyzeEntry.h */,
@@ -362,9 +354,9 @@
 				27CFF49C18DFB84400004FEE /* CatalyzeReference.m */,
 				27B9C27A17CBBAC600B8FA02 /* CatalyzeQuery.h */,
 				27B9C27B17CBBAC600B8FA02 /* CatalyzeQuery.m */,
-				27B9C24E17CBB9B500B8FA02 /* Supporting Files */,
 				27CFF38518DF946D00004FEE /* CatalyzeUser.h */,
 				27CFF38618DF946D00004FEE /* CatalyzeUser.m */,
+				27B9C24E17CBB9B500B8FA02 /* Supporting Files */,
 				27CFF38818DF95B700004FEE /* Email.h */,
 				27CFF38918DF95B700004FEE /* Email.m */,
 				27CFF38B18DF95FE00004FEE /* Name.h */,
@@ -693,7 +685,6 @@
 				279602EA19743284009BAD41 /* AFHTTPRequestOperationManager.m in Sources */,
 				27CFF38D18DF95FE00004FEE /* Name.m in Sources */,
 				279602E919743284009BAD41 /* AFHTTPRequestOperation.m in Sources */,
-				279207E419B7F2990090AFBF /* CatalyzeStore.m in Sources */,
 				279602F119743284009BAD41 /* AFURLSessionManager.m in Sources */,
 				27CFF38718DF946D00004FEE /* CatalyzeUser.m in Sources */,
 				279602EC19743284009BAD41 /* AFNetworkReachabilityManager.m in Sources */,
@@ -705,6 +696,7 @@
 				27CFF39318DF968900004FEE /* Address.m in Sources */,
 				27CFF39018DF964C00004FEE /* PhoneNumber.m in Sources */,
 				27CFF3A218DF98EB00004FEE /* Mrn.m in Sources */,
+				272D2DD91AA0D96500F93DDA /* CatalyzeStore.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

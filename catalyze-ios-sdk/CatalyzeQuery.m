@@ -50,7 +50,12 @@
 #pragma mark Retrieve
 
 - (void)retrieveAllEntriesInBackgroundWithSuccess:(CatalyzeArraySuccessBlock)success failure:(CatalyzeFailureBlock)failure {
-    [CatalyzeHTTPManager doGet:[NSString stringWithFormat:@"/classes/%@/query?pageSize=%i&pageNumber=%i%@%@",[CatalyzeHTTPManager percentEncode:[self catalyzeClassName]], _pageSize, _pageNumber, [self constructQueryFieldParam], [self constructQueryValueParam]] success:^(id result) {
+    NSMutableDictionary *params = [NSMutableDictionary dictionary];
+    [params setValue:@(_pageSize) forKey:@"pageSize"];
+    [params setValue:@(_pageNumber) forKey:@"pageNumber"];
+    [params addEntriesFromDictionary:[self constructQueryFieldParam]];
+    [params addEntriesFromDictionary:[self constructQueryValueParam]];
+    [CatalyzeHTTPManager doGet:[NSString stringWithFormat:@"/classes/%@/query",[CatalyzeHTTPManager percentEncode:[self catalyzeClassName]]] withParams:params success:^(id result) {
         if (success) {
             NSArray *array = (NSArray *)result;
             NSMutableArray *entries = [NSMutableArray array];
@@ -86,7 +91,12 @@
 }
 
 - (void)retrieveInBackgroundForUsersId:(NSString *)usersId success:(CatalyzeArraySuccessBlock)success failure:(CatalyzeFailureBlock)failure {
-    [CatalyzeHTTPManager doGet:[NSString stringWithFormat:@"/classes/%@/query/%@?pageSize=%i&pageNumber=%i%@%@",[CatalyzeHTTPManager percentEncode:[self catalyzeClassName]], usersId, _pageSize, _pageNumber, [self constructQueryFieldParam], [self constructQueryValueParam]] success:^(id result) {
+    NSMutableDictionary *params = [NSMutableDictionary dictionary];
+    [params setValue:@(_pageSize) forKey:@"pageSize"];
+    [params setValue:@(_pageNumber) forKey:@"pageNumber"];
+    [params addEntriesFromDictionary:[self constructQueryFieldParam]];
+    [params addEntriesFromDictionary:[self constructQueryValueParam]];
+    [CatalyzeHTTPManager doGet:[NSString stringWithFormat:@"/classes/%@/query/%@",[CatalyzeHTTPManager percentEncode:[self catalyzeClassName]], usersId] withParams:params success:^(id result) {
         if (success) {
             NSArray *array = (NSArray *)result;
             NSMutableArray *entries = [NSMutableArray array];
@@ -112,24 +122,24 @@
 #pragma mark -
 #pragma mark Helpers
 
-- (NSString *)constructQueryFieldParam {
-    NSString *queryFieldParam = @"";
+- (NSDictionary *)constructQueryFieldParam {
+    NSMutableDictionary *dictionary = [NSMutableDictionary dictionary];
     if (_queryField) {
         if (![_queryField isKindOfClass:[NSString class]] || ([_queryField isKindOfClass:[NSString class]] && ![_queryField isEqualToString:@""])) {
-            queryFieldParam = [NSString stringWithFormat:@"&field=%@", [CatalyzeHTTPManager percentEncode:_queryField]];
+            [dictionary setValue:[CatalyzeHTTPManager percentEncode:_queryField] forKey:@"field"];
         }
     }
-    return queryFieldParam;
+    return dictionary;
 }
 
-- (NSString *)constructQueryValueParam {
-    NSString *queryValueParam = @"";
+- (NSDictionary *)constructQueryValueParam {
+    NSMutableDictionary *dictionary = [NSMutableDictionary dictionary];
     if (_queryValue) {
         if (![_queryValue isKindOfClass:[NSString class]] || ([_queryValue isKindOfClass:[NSString class]] && ![_queryValue isEqualToString:@""])) {
-            queryValueParam = [NSString stringWithFormat:@"&searchBy=%@", [CatalyzeHTTPManager percentEncode:_queryValue]];
+            [dictionary setValue:[CatalyzeHTTPManager percentEncode:_queryValue] forKey:@"searchBy"];
         }
     }
-    return queryValueParam;
+    return dictionary;
 }
 
 @end

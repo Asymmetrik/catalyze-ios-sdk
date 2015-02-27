@@ -200,7 +200,7 @@ static CatalyzeUser *currentUser;
 }
 
 - (void)logoutWithSuccess:(CatalyzeSuccessBlock)success failure:(CatalyzeFailureBlock)failure {
-    [CatalyzeHTTPManager doGet:@"/auth/signout" success:^(id result) {
+    [CatalyzeHTTPManager doGet:@"/auth/signout" withParams:nil success:^(id result) {
         currentUser = nil;
         
         [[NSUserDefaults standardUserDefaults] removeObjectForKey:kCatalyzeAuthorizationKey];
@@ -351,7 +351,7 @@ static CatalyzeUser *currentUser;
 }
 
 - (void)retrieveInBackgroundWithSuccess:(CatalyzeSuccessBlock)success failure:(CatalyzeFailureBlock)failure {
-    [CatalyzeHTTPManager doGet:[NSString stringWithFormat:@"/users/%@", _usersId] success:^(id result) {
+    [CatalyzeHTTPManager doGet:[NSString stringWithFormat:@"/users/%@", _usersId] withParams:nil success:^(id result) {
         NSMutableDictionary *dict = [NSMutableDictionary dictionaryWithDictionary:result];
         
         dict = [CatalyzeUser modifyDict:dict];
@@ -376,7 +376,7 @@ static CatalyzeUser *currentUser;
 }
 
 - (void)deleteInBackgroundWithSuccess:(CatalyzeSuccessBlock)success failure:(CatalyzeFailureBlock)failure {
-    [CatalyzeHTTPManager doDelete:[NSString stringWithFormat:@"/users/%@", _usersId] success:^(id result) {
+    [CatalyzeHTTPManager doDelete:[NSString stringWithFormat:@"/users/%@", _usersId] withParams:nil success:^(id result) {
         currentUser = nil;
         self.usersId= nil;
         self.active= nil;

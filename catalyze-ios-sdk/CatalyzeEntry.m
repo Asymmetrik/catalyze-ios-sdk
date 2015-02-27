@@ -164,7 +164,7 @@
 
 - (void)retrieveInBackgroundWithSuccess:(CatalyzeSuccessBlock)success failure:(CatalyzeFailureBlock)failure {
     NSString *url = [self lookupURL:NO];
-    [CatalyzeHTTPManager doGet:url success:^(id result) {
+    [CatalyzeHTTPManager doGet:url withParams:nil success:^(id result) {
         NSDictionary *responseDict = (NSDictionary *)result;
         [self setValuesForKeysWithDictionary:responseDict];
         self.content = [NSMutableDictionary dictionaryWithDictionary:self.content]; // to keep mutability
@@ -190,7 +190,7 @@
 }
 
 - (void)deleteInBackgroundWithSuccess:(CatalyzeSuccessBlock)success failure:(CatalyzeFailureBlock)failure {
-    [CatalyzeHTTPManager doDelete:[self lookupURL:NO] success:^(id result) {
+    [CatalyzeHTTPManager doDelete:[self lookupURL:NO] withParams:nil success:^(id result) {
         _className = nil;
         _entryId = nil;
         _authorId = nil;
