@@ -263,7 +263,7 @@ static CatalyzeUser *currentUser;
 }
 
 + (void)signUpWithUsernameInBackground:(NSString *)username email:(Email *)email name:(Name *)name  password:(NSString *)password inviteCode:(NSString *)inviteCode success:(CatalyzeUserSuccessBlock)success failure:(CatalyzeFailureBlock)failure {
-    [CatalyzeUser signUpWithUsernameInBackground:username email:email name:name password:password inviteCode:@"" extras:@{} success:success failure:failure];
+    [CatalyzeUser signUpWithUsernameInBackground:username email:email name:name password:password inviteCode:inviteCode extras:@{} success:success failure:failure];
 }
 
 + (void)signUpWithUsernameInBackground:(NSString *)username email:(Email *)email name:(Name *)name  password:(NSString *)password inviteCode:(NSString *)inviteCode extras:(NSDictionary *)extras success:(CatalyzeUserSuccessBlock)success failure:(CatalyzeFailureBlock)failure {
