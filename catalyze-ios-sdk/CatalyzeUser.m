@@ -263,7 +263,11 @@ static CatalyzeUser *currentUser;
 }
 
 + (void)signUpWithUsernameInBackground:(NSString *)username email:(Email *)email name:(Name *)name  password:(NSString *)password inviteCode:(NSString *)inviteCode success:(CatalyzeUserSuccessBlock)success failure:(CatalyzeFailureBlock)failure {
-    NSDictionary *body = @{@"username" : username, @"email" : [email JSON:[Email class]], @"name" : [name JSON:[Name class]], @"password": password, @"inviteCode" : inviteCode};
+    [CatalyzeUser signUpWithUsernameInBackground:username email:email name:name password:password inviteCode:@"" extras:@{} success:success failure:failure];
+}
+
++ (void)signUpWithUsernameInBackground:(NSString *)username email:(Email *)email name:(Name *)name  password:(NSString *)password inviteCode:(NSString *)inviteCode extras:(NSDictionary *)extras success:(CatalyzeUserSuccessBlock)success failure:(CatalyzeFailureBlock)failure {
+    NSDictionary *body = @{@"username" : username, @"email" : [email JSON:[Email class]], @"name" : [name JSON:[Name class]], @"password": password, @"inviteCode" : inviteCode, @"extras": extras};
     [CatalyzeHTTPManager doPost:@"/users" withParams:body success:^(id result) {
         currentUser = [CatalyzeUser user];
         NSMutableDictionary *dict = [NSMutableDictionary dictionaryWithDictionary:result];
