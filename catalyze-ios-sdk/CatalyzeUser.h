@@ -68,6 +68,8 @@
 
 + (void)signUpWithUsernameInBackground:(NSString *)username email:(Email *)email name:(Name *)name  password:(NSString *)password inviteCode:(NSString *)inviteCode success:(CatalyzeUserSuccessBlock)success failure:(CatalyzeFailureBlock)failure;
 
++ (void)signUpWithUsernameInBackground:(NSString *)username email:(Email *)email name:(Name *)name  password:(NSString *)password inviteCode:(NSString *)inviteCode extras:(NSDictionary *)extras success:(CatalyzeUserSuccessBlock)success failure:(CatalyzeFailureBlock)failure;
+
 - (id)extraForKey:(NSString *)key;
 - (void)setExtra:(id)extra forKey:(NSString *)key;
 - (void)removeExtraForKey:(NSString *)key;
