@@ -25,6 +25,7 @@
 @interface CatalyzeUser : JSONObject<NSCoding, CatalyzeObjectProtocol>
 
 @property (strong, nonatomic) NSString *usersId;
+@property (strong, nonatomic) NSString *inviteCode;
 @property (strong, nonatomic) NSNumber *active;
 @property (strong, nonatomic) NSDate *createdAt;
 @property (strong, nonatomic) NSDate *updatedAt;

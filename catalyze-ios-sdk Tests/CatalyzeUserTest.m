@@ -161,6 +161,7 @@
                 
                 CatalyzeUser *userResult = (CatalyzeUser *)result;
                 XCTAssertNil(userResult.usersId, @"Previous CatalyzerUser properties not unset on delete");
+                XCTAssertNil(userResult.inviteCode, @"Previous CatalyzerUser properties not unset on delete");
                 XCTAssertNil(userResult.active, @"Previous CatalyzerUser properties not unset on delete");
                 XCTAssertNil(userResult.createdAt, @"Previous CatalyzerUser properties not unset on delete");
                 XCTAssertNil(userResult.updatedAt, @"Previous CatalyzerUser properties not unset on delete");
