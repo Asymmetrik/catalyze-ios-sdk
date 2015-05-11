@@ -19,6 +19,7 @@
 #import "Catalyze.h"
 
 #define kEncodeKeyUsersId @"users_id"
+#define kEncodeKeyInviteCode @"invite_code"
 #define kEncodeKeyActive @"active"
 #define kEncodeKeyCreatedAt @"created_at"
 #define kEncodeKeyUpdatedAt @"updated_at"
@@ -52,6 +53,7 @@
 
 @implementation CatalyzeUser
 @synthesize usersId = _usersId;
+@synthesize inviteCode = _inviteCode;
 @synthesize active = _active;
 @synthesize createdAt = _createdAt;
 @synthesize updatedAt = _updatedAt;
@@ -100,6 +102,7 @@ static CatalyzeUser *currentUser;
 
 - (void)encodeWithCoder:(NSCoder *)aCoder {
     [aCoder encodeObject:_usersId forKey:kEncodeKeyUsersId];
+    [aCoder encodeObject:_inviteCode forKey:kEncodeKeyInviteCode];
     [aCoder encodeObject:_active forKey:kEncodeKeyActive];
     [aCoder encodeObject:_createdAt forKey:kEncodeKeyCreatedAt];
     [aCoder encodeObject:_updatedAt forKey:kEncodeKeyUpdatedAt];
@@ -132,6 +135,7 @@ static CatalyzeUser *currentUser;
     self = [self init];
     if (self) {;
         [self setUsersId:[aDecoder decodeObjectForKey:kEncodeKeyUsersId]];
+        [self setInviteCode:[aDecoder decodeObjectForKey:kEncodeKeyInviteCode]];
         [self setActive:[aDecoder decodeObjectForKey:kEncodeKeyActive]];
         [self setCreatedAt:[aDecoder decodeObjectForKey:kEncodeKeyCreatedAt]];
         [self setUpdatedAt:[aDecoder decodeObjectForKey:kEncodeKeyUpdatedAt]];
@@ -379,6 +383,7 @@ static CatalyzeUser *currentUser;
     [CatalyzeHTTPManager doDelete:[NSString stringWithFormat:@"/users/%@", _usersId] withParams:nil success:^(id result) {
         currentUser = nil;
         self.usersId= nil;
+        self.inviteCode = nil;
         self.active= nil;
         self.createdAt= nil;
         self.updatedAt= nil;
