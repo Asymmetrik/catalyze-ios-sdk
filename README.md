@@ -1,6 +1,11 @@
 Getting Started
 ===============
 
+Looking for `CatalyzeStore.m`?
+------------------------------
+The HealthKit wrapper, `CatalyzeStore`, has been moved to its own project in order to help avoid applications getting rejected from the app store for linking against
+HealthKit with appropriate permissions. See [catalyze-healthkit-sdk](https://github.com/catalyzeio/catalyze-healthkit-sdk) for more information and usage.
+
 Using Swift?
 ------------
 If you're using Swift and want to use the Catalyze iOS SDK, all you have to do is follow [this guide](https://github.com/catalyzeio/catalyze-ios-sdk/wiki/Using-the-Catalyze-iOS-SDK-with-Swift)!.
