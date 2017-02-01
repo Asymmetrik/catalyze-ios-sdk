@@ -18,6 +18,16 @@ Installation
 ------------
 The preferred method of installation is through [cocoapods](http://cocoapods.org/). Simply add ```pod 'catalyze-ios-sdk', '~> 3.0'``` to your Podfile, run ```pod install``` and you will be ready to start developing. Optionally if you do not use cocoapods or have an existing project that has not integrated cocoapods, you can clone this repository to your computer. Simply copy the iOS SDK folder anywhere into your project directory by clicking on the File menu and then "Add Files to 'yourProjectName'...". Navigate to the directory of the iOS SDK and click Add. You're now ready to use the iOS SDK in your application.
 
+Installation of version using AFNetworking 3.0
+----------------------------------------------
+The preferred method is still through [cocoapods](http://cocoapods.org/). You do still have the option of cloning this branch(afnetworking-3_0 or medstar-refer-version) and copying the SDK into your project as described above.  For using pods, you need to put the following in the podfile in this order.
+```
+pod 'AFNetworkActivityLogger', :git => 'https://github.com/AFNetworking/AFNetworkActivityLogger.git', :branch => '3_0_0'
+pod 'catalyze-ios-sdk', :git => 'https://github.com/Asymmetrik/catalyze-ios-sdk.git', :branch => 'medstar-refer-version'
+pod 'AFNetworking', '~> 3.0'
+```
+And then run ```pod install```.
+
 Catalyze Documentation
 ----------------------
 If you're looking for some more documentation on the Catalyze platform, be sure to check out our [resources page](https://resources.catalyze.io/).
