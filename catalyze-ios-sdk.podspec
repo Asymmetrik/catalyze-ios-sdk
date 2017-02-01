@@ -21,6 +21,6 @@ Pod::Spec.new do |spec|
     spec.dependency 'AFNetworking', '~> 3.0'
 		# The AFNetworkActivityLogger requires the following setup in your podfile
 		# pod 'AFNetworkActivityLogger', :git => 'https://github.com/AFNetworking/AFNetworkActivityLogger.git', :branch => '3_0_0'
-    # pod 'catalyze-ios-sdk', :path => 'path_to/catalyze-ios-sdk'
+    # pod 'catalyze-ios-sdk', :path => 'path_to_branch_supporting_AFNetworking_3_0/catalyze-ios-sdk'
 		spec.dependency 'AFNetworkActivityLogger'
 end
