@@ -100,7 +100,7 @@
     [params setValue:@(_pageNumber) forKey:@"pageNumber"];
     [params addEntriesFromDictionary:[self constructQueryFieldParam]];
     [params addEntriesFromDictionary:[self constructQueryValueParam]];
-    [CatalyzeHTTPManager doGet:[NSString stringWithFormat:@"/classes/%@/query/%@?direction=desc",[CatalyzeHTTPManager percentEncode:[self catalyzeClassName]], usersId] withParams:params success:^(id result) {
+    [CatalyzeHTTPManager doGet:[NSString stringWithFormat:@"/classes/%@/query/%@",[CatalyzeHTTPManager percentEncode:[self catalyzeClassName]], usersId] withParams:params success:^(id result) {
         if (success) {
             NSArray *array = (NSArray *)result;
             NSMutableArray *entries = [NSMutableArray array];
