@@ -123,6 +123,15 @@
 
 /**
  Performs the query asynchronously.  This should only be called after setting at minimum, the
+ queryField and queryValue.  Upon completion of the request, the CatalyzeArrayResultBlock is 
+ performed with the results of the query. This only queries for your own entries.
+ 
+ @param block the completion block to be executed upon the request's completion
+ */
+- (void)retrieveInBackgroundWithSuccessForUserId:(NSString)userId success:(CatalyzeArraySuccessBlock)success failure:(CatalyzeFailureBlock)failure;
+
+/**
+ Performs the query asynchronously.  This should only be called after setting at minimum, the
  queryField and queryValue.  Upon completion of the request, the given selector will be 
  performed on the given target with the array of results as the object of the selector.
  This only queries for your own entries.

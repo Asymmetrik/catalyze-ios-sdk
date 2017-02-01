@@ -82,6 +82,10 @@
     [self retrieveInBackgroundForUsersId:[[CatalyzeUser currentUser] usersId] success:success failure:failure];
 }
 
+- (void)retrieveInBackgroundWithSuccessForUserId:(NSString *)userId success:(CatalyzeArraySuccessBlock)success failure:(CatalyzeFailureBlock)failure {
+		[self retrieveInBackgroundForUsersId:userId success:success failure:failure];
+}
+
 - (void)retrieveInBackgroundWithTarget:(id)target selector:(SEL)selector {
     [self retrieveInBackgroundWithSuccess:^(NSArray *result) {
         [target performSelector:selector onThread:[NSThread mainThread] withObject:result waitUntilDone:NO];
