@@ -161,6 +161,15 @@
 - (void)retrieveInBackgroundForUsersId:(NSString *)usersId success:(CatalyzeArraySuccessBlock)success failure:(CatalyzeFailureBlock)failure;
 
 /**
+ This is the same as above with the exception that you can pass extra query params for this
+ 
+ @param usersId the ID of the user whose entries are to be queried for
+ @param query any query parameters to append to the url, default is ""
+ @param block the completion block to be executed upon the request's completion
+ */
+- (void)retrieveInBackgroundForUsersId:(NSString *)usersId withQuery:(NSString *)query success:(CatalyzeArraySuccessBlock)success failure:(CatalyzeFailureBlock)failure;
+
+/**
  Performs the query asynchronously.  This should only be called after setting at minimum, the
  queryField and queryValue.  Upon completion of the request, the given selector will be
  performed on the given target with the array of results as the object of the selector.

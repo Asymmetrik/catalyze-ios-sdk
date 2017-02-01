@@ -100,7 +100,28 @@
     [params setValue:@(_pageNumber) forKey:@"pageNumber"];
     [params addEntriesFromDictionary:[self constructQueryFieldParam]];
     [params addEntriesFromDictionary:[self constructQueryValueParam]];
-    [CatalyzeHTTPManager doGet:[NSString stringWithFormat:@"/classes/%@/query/%@",[CatalyzeHTTPManager percentEncode:[self catalyzeClassName]], usersId] withParams:params success:^(id result) {
+    [CatalyzeHTTPManager doGet:[NSString stringWithFormat:@"/classes/%@/query/%@?direction=desc",[CatalyzeHTTPManager percentEncode:[self catalyzeClassName]], usersId] withParams:params success:^(id result) {
+        if (success) {
+            NSArray *array = (NSArray *)result;
+            NSMutableArray *entries = [NSMutableArray array];
+            for (id dict in array) {
+                CatalyzeEntry *entry = [CatalyzeEntry entryWithClassName:_catalyzeClassName];
+                [entry setValuesForKeysWithDictionary:dict];
+                entry.content = [NSMutableDictionary dictionaryWithDictionary:entry.content]; // to keep mutability
+                [entries addObject:entry];
+            }
+            success(entries);
+        }
+    } failure:failure];
+}
+
+- (void)retrieveInBackgroundForUsersId:(NSString *)usersId withQuery:(NSString *)query success:(CatalyzeArraySuccessBlock)success failure:(CatalyzeFailureBlock)failure {
+    NSMutableDictionary *params = [NSMutableDictionary dictionary];
+    [params setValue:@(_pageSize) forKey:@"pageSize"];
+    [params setValue:@(_pageNumber) forKey:@"pageNumber"];
+    [params addEntriesFromDictionary:[self constructQueryFieldParam]];
+    [params addEntriesFromDictionary:[self constructQueryValueParam]];
+    [CatalyzeHTTPManager doGet:[NSString stringWithFormat:@"/classes/%@/query/%@?%@",[CatalyzeHTTPManager percentEncode:[self catalyzeClassName]], usersId, query] withParams:params success:^(id result) {
         if (success) {
             NSArray *array = (NSArray *)result;
             NSMutableArray *entries = [NSMutableArray array];
