@@ -128,7 +128,7 @@
  
  @param block the completion block to be executed upon the request's completion
  */
-- (void)retrieveInBackgroundWithSuccessForUserId:(NSString)userId success:(CatalyzeArraySuccessBlock)success failure:(CatalyzeFailureBlock)failure;
+- (void)retrieveInBackgroundWithSuccessForUserId:(NSString*)userId success:(CatalyzeArraySuccessBlock)success failure:(CatalyzeFailureBlock)failure;
 
 /**
  Performs the query asynchronously.  This should only be called after setting at minimum, the
