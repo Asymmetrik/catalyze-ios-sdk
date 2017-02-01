@@ -21,21 +21,19 @@
 @interface CatalyzeHTTPManager()
 
 @property BOOL returned401;
-@property AFHTTPRequestOperation *operationHolder;
 @property NSError *errorHolder;
 
 @end
 
 @implementation CatalyzeHTTPManager
-@synthesize operationHolder = _operationHolder;
 @synthesize errorHolder = _errorHolder;
 @synthesize returned401 = _returned401;
 
-+ (AFHTTPRequestOperationManager *)httpClient {
-    static AFHTTPRequestOperationManager *httpClient = nil;
++ (AFHTTPSessionManager *)httpClient {
+    static AFHTTPSessionManager *httpClient = nil;
     static dispatch_once_t oncePredicate;
     dispatch_once(&oncePredicate, ^{
-        httpClient = [[AFHTTPRequestOperationManager alloc] initWithBaseURL:[NSURL URLWithString:[[NSUserDefaults standardUserDefaults] valueForKey:kCatalyzeBaseUrlKey]]];
+        httpClient = [[AFHTTPSessionManager alloc] initWithBaseURL:[NSURL URLWithString:[[NSUserDefaults standardUserDefaults] valueForKey:kCatalyzeBaseUrlKey]]];
 #ifdef LOCAL_ENV
         httpClient.securityPolicy = [AFSecurityPolicy policyWithPinningMode:AFSSLPinningModeNone];
         httpClient.securityPolicy.allowInvalidCertificates = YES;
@@ -56,13 +54,13 @@
 + (void)doGet:(NSString *)urlString withParams:(NSDictionary *)params success:(CatalyzeSuccessBlock)success failure:(CatalyzeFailureBlock)failure {
     [CatalyzeHTTPManager updateHeaders];
     
-    [[CatalyzeHTTPManager httpClient] GET:[NSString stringWithFormat:@"%@%@",kCatalyzeAPIVersionPath,urlString] parameters:params success:[CatalyzeHTTPManager successBlock:success] failure:[CatalyzeHTTPManager failureBlock:failure]];
+    [[CatalyzeHTTPManager httpClient] GET:[NSString stringWithFormat:@"%@%@",kCatalyzeAPIVersionPath,urlString] parameters:params progress:nil success:[CatalyzeHTTPManager successBlock:success] failure:[CatalyzeHTTPManager failureBlock:failure]];
 }
 
 + (void)doPost:(NSString *)urlString withParams:(NSDictionary *)params success:(CatalyzeSuccessBlock)success failure:(CatalyzeFailureBlock)failure {
     [CatalyzeHTTPManager updateHeaders];
     
-    [[CatalyzeHTTPManager httpClient] POST:[NSString stringWithFormat:@"%@%@",kCatalyzeAPIVersionPath,urlString] parameters:params success:[CatalyzeHTTPManager successBlock:success] failure:[CatalyzeHTTPManager failureBlock:failure]];
+    [[CatalyzeHTTPManager httpClient] POST:[NSString stringWithFormat:@"%@%@",kCatalyzeAPIVersionPath,urlString] parameters:params progress:nil success:[CatalyzeHTTPManager successBlock:success] failure:[CatalyzeHTTPManager failureBlock:failure]];
 }
 
 + (void)doPut:(NSString *)urlString withParams:(NSDictionary *)params success:(CatalyzeSuccessBlock)success failure:(CatalyzeFailureBlock)failure {
@@ -82,8 +80,8 @@
     [[CatalyzeHTTPManager httpClient] DELETE:[NSString stringWithFormat:@"%@%@",kCatalyzeAPIVersionPath,urlString] parameters:params success:[CatalyzeHTTPManager successBlock:success] failure:[CatalyzeHTTPManager failureBlock:failure]];
 }
 
-+ (void (^)(AFHTTPRequestOperation *operation, id responseObject))successBlock:(CatalyzeSuccessBlock)success {
-    return ^(AFHTTPRequestOperation *operation, id responseObject) {
++ (void (^)(NSURLSessionDataTask *task, id responseObject))successBlock:(CatalyzeSuccessBlock)success {
+    return ^(NSURLSessionDataTask *task, id responseObject) {
         if (success) {
             id jsonResponse = nil;
             if (responseObject) {
@@ -94,14 +92,16 @@
     };
 }
 
-+ (void (^)(AFHTTPRequestOperation *operation, id responseObject))failureBlock:(CatalyzeFailureBlock)failure {
-    return ^(AFHTTPRequestOperation *operation, NSError *error) {
++ (void (^)(NSURLSessionDataTask *task, id responseObject))failureBlock:(CatalyzeFailureBlock)failure {
+    return ^(NSURLSessionDataTask *task, NSError *error) {
         if (failure) {
+            NSData *data = (NSData *)error.userInfo[AFNetworkingOperationFailingURLResponseDataErrorKey];
+            NSHTTPURLResponse *response = (NSHTTPURLResponse *)[task response];
             id jsonResponse = nil;
-            if (operation && [operation responseObject]) {
-                jsonResponse = [NSJSONSerialization JSONObjectWithData:[operation responseObject] options:0 error:nil];
+            if (task && data) {
+                jsonResponse = [NSJSONSerialization JSONObjectWithData:data options:0 error:nil];
             }
-            failure(jsonResponse, (int)[[operation response] statusCode], error);
+            failure(jsonResponse, (int)[response statusCode], error);
         }
     };
 }

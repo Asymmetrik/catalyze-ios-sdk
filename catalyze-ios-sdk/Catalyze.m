@@ -16,6 +16,7 @@
 
 #import "Catalyze.h"
 #import "AFNetworkActivityLogger.h"
+#import "AFNetworkActivityConsoleLogger.h"
 
 @implementation Catalyze
 
@@ -45,22 +46,29 @@
 }
 
 + (void)setLoggingLevel:(LoggingLevel)level {
+    // Remove any current loggers
+    id loggers = [[[AFNetworkActivityLogger sharedLogger] loggers] anyObject];
+    [[AFNetworkActivityLogger sharedLogger] removeLogger:loggers];
+
     if (level == kLoggingLevelOff) {
         [[AFNetworkActivityLogger sharedLogger] stopLogging];
     } else {
+        AFNetworkActivityConsoleLogger *logger = [AFNetworkActivityConsoleLogger new];
+        
         switch (level) {
             case kLoggingLevelDebug:
-                [[AFNetworkActivityLogger sharedLogger] setLevel:AFLoggerLevelDebug];
+                logger.level = AFLoggerLevelDebug;
                 break;
             case kLoggingLevelInfo:
-                [[AFNetworkActivityLogger sharedLogger] setLevel:AFLoggerLevelInfo];
+                logger.level = AFLoggerLevelInfo;
                 break;
             case kLoggingLevelWarn:
-                [[AFNetworkActivityLogger sharedLogger] setLevel:AFLoggerLevelWarn];
+                logger.level = AFLoggerLevelError;
                 break;
             default:
                 break;
         }
+        [[AFNetworkActivityLogger sharedLogger] addLogger:logger];
         [[AFNetworkActivityLogger sharedLogger] startLogging];
     }
 }

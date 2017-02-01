@@ -22,6 +22,15 @@
 /* End PBXAggregateTarget section */
 
 /* Begin PBXBuildFile section */
+		0C3DF53B1E4228F000EA5C38 /* AFNetworkActivityConsoleLogger.h in Headers */ = {isa = PBXBuildFile; fileRef = 0C3DF5361E4228F000EA5C38 /* AFNetworkActivityConsoleLogger.h */; };
+		0C3DF53C1E4228F000EA5C38 /* AFNetworkActivityConsoleLogger.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C3DF5371E4228F000EA5C38 /* AFNetworkActivityConsoleLogger.m */; };
+		0C3DF53D1E4228F000EA5C38 /* AFNetworkActivityConsoleLogger.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C3DF5371E4228F000EA5C38 /* AFNetworkActivityConsoleLogger.m */; };
+		0C3DF53E1E4228F000EA5C38 /* AFNetworkActivityConsoleLogger.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C3DF5371E4228F000EA5C38 /* AFNetworkActivityConsoleLogger.m */; };
+		0C3DF53F1E4228F000EA5C38 /* AFNetworkActivityLogger.h in Headers */ = {isa = PBXBuildFile; fileRef = 0C3DF5381E4228F000EA5C38 /* AFNetworkActivityLogger.h */; };
+		0C3DF5401E4228F000EA5C38 /* AFNetworkActivityLogger.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C3DF5391E4228F000EA5C38 /* AFNetworkActivityLogger.m */; };
+		0C3DF5411E4228F000EA5C38 /* AFNetworkActivityLogger.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C3DF5391E4228F000EA5C38 /* AFNetworkActivityLogger.m */; };
+		0C3DF5421E4228F000EA5C38 /* AFNetworkActivityLogger.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C3DF5391E4228F000EA5C38 /* AFNetworkActivityLogger.m */; };
+		0C3DF5431E4228F000EA5C38 /* AFNetworkActivityLoggerProtocol.h in Headers */ = {isa = PBXBuildFile; fileRef = 0C3DF53A1E4228F000EA5C38 /* AFNetworkActivityLoggerProtocol.h */; };
 		271D663A19AFB571004FED88 /* CatalyzeQueryTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 271D663919AFB571004FED88 /* CatalyzeQueryTest.m */; };
 		274833CC19A3E68100F3B940 /* Catalyze.m in Sources */ = {isa = PBXBuildFile; fileRef = 27B9C27417CBBAC600B8FA02 /* Catalyze.m */; };
 		274833CD19A3E68B00F3B940 /* CatalyzeHTTPManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 27B9C27717CBBAC600B8FA02 /* CatalyzeHTTPManager.m */; };
@@ -40,7 +49,6 @@
 		274833DB19A3E69900F3B940 /* Mrn.m in Sources */ = {isa = PBXBuildFile; fileRef = 27CFF3A118DF98EB00004FEE /* Mrn.m */; };
 		274833DC19A3E69900F3B940 /* HealthPlan.m in Sources */ = {isa = PBXBuildFile; fileRef = 27CFF3A418DF991F00004FEE /* HealthPlan.m */; };
 		274833DD19A3E69900F3B940 /* JSONObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 275658D818DFC45500C3D5D1 /* JSONObject.m */; };
-		274833DE19A3E6A400F3B940 /* AFNetworkActivityLogger.m in Sources */ = {isa = PBXBuildFile; fileRef = 279602D419742F9B009BAD41 /* AFNetworkActivityLogger.m */; };
 		274833DF19A3E6AE00F3B940 /* AFHTTPRequestOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 279602D719743284009BAD41 /* AFHTTPRequestOperation.m */; };
 		274833E019A3E6AE00F3B940 /* AFHTTPRequestOperationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 279602D919743284009BAD41 /* AFHTTPRequestOperationManager.m */; };
 		274833E119A3E6AE00F3B940 /* AFHTTPSessionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 279602DB19743284009BAD41 /* AFHTTPSessionManager.m */; };
@@ -86,7 +94,6 @@
 		278FBAF119A79FE900FC41C4 /* CatalyzeObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 278FBAF019A79FE900FC41C4 /* CatalyzeObject.m */; };
 		278FBAF219A7A12700FC41C4 /* CatalyzeObject.h in Headers */ = {isa = PBXBuildFile; fileRef = 278FBAEF19A79FE900FC41C4 /* CatalyzeObject.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		278FBAF319A7A12E00FC41C4 /* CatalyzeObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 278FBAF019A79FE900FC41C4 /* CatalyzeObject.m */; };
-		279602D519742F9B009BAD41 /* AFNetworkActivityLogger.m in Sources */ = {isa = PBXBuildFile; fileRef = 279602D419742F9B009BAD41 /* AFNetworkActivityLogger.m */; };
 		279602E919743284009BAD41 /* AFHTTPRequestOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 279602D719743284009BAD41 /* AFHTTPRequestOperation.m */; };
 		279602EA19743284009BAD41 /* AFHTTPRequestOperationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 279602D919743284009BAD41 /* AFHTTPRequestOperationManager.m */; };
 		279602EB19743284009BAD41 /* AFHTTPSessionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 279602DB19743284009BAD41 /* AFHTTPSessionManager.m */; };
@@ -139,6 +146,11 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		0C3DF5361E4228F000EA5C38 /* AFNetworkActivityConsoleLogger.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFNetworkActivityConsoleLogger.h; sourceTree = "<group>"; };
+		0C3DF5371E4228F000EA5C38 /* AFNetworkActivityConsoleLogger.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFNetworkActivityConsoleLogger.m; sourceTree = "<group>"; };
+		0C3DF5381E4228F000EA5C38 /* AFNetworkActivityLogger.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFNetworkActivityLogger.h; sourceTree = "<group>"; };
+		0C3DF5391E4228F000EA5C38 /* AFNetworkActivityLogger.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFNetworkActivityLogger.m; sourceTree = "<group>"; };
+		0C3DF53A1E4228F000EA5C38 /* AFNetworkActivityLoggerProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFNetworkActivityLoggerProtocol.h; sourceTree = "<group>"; };
 		271D663919AFB571004FED88 /* CatalyzeQueryTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CatalyzeQueryTest.m; sourceTree = "<group>"; };
 		274A9FBE19ABEC6D00DB7039 /* CatalyzeUserTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CatalyzeUserTest.m; sourceTree = "<group>"; };
 		274A9FC019ABECBB00DB7039 /* CatalyzeEntryTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CatalyzeEntryTest.m; sourceTree = "<group>"; };
@@ -163,8 +175,6 @@
 		278FBAED19A6D68600FC41C4 /* testFile.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = testFile.txt; path = resources/testFile.txt; sourceTree = "<group>"; };
 		278FBAEF19A79FE900FC41C4 /* CatalyzeObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CatalyzeObject.h; sourceTree = "<group>"; };
 		278FBAF019A79FE900FC41C4 /* CatalyzeObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CatalyzeObject.m; sourceTree = "<group>"; };
-		279602D319742F9B009BAD41 /* AFNetworkActivityLogger.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFNetworkActivityLogger.h; sourceTree = "<group>"; };
-		279602D419742F9B009BAD41 /* AFNetworkActivityLogger.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFNetworkActivityLogger.m; sourceTree = "<group>"; };
 		279602D619743284009BAD41 /* AFHTTPRequestOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFHTTPRequestOperation.h; sourceTree = "<group>"; };
 		279602D719743284009BAD41 /* AFHTTPRequestOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFHTTPRequestOperation.m; sourceTree = "<group>"; };
 		279602D819743284009BAD41 /* AFHTTPRequestOperationManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFHTTPRequestOperationManager.h; sourceTree = "<group>"; };
@@ -253,6 +263,18 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0C3DF5351E4228A500EA5C38 /* AFNetworkActivityLogger */ = {
+			isa = PBXGroup;
+			children = (
+				0C3DF5361E4228F000EA5C38 /* AFNetworkActivityConsoleLogger.h */,
+				0C3DF5371E4228F000EA5C38 /* AFNetworkActivityConsoleLogger.m */,
+				0C3DF5381E4228F000EA5C38 /* AFNetworkActivityLogger.h */,
+				0C3DF5391E4228F000EA5C38 /* AFNetworkActivityLogger.m */,
+				0C3DF53A1E4228F000EA5C38 /* AFNetworkActivityLoggerProtocol.h */,
+			);
+			name = AFNetworkActivityLogger;
+			sourceTree = "<group>";
+		};
 		2756596118DFF2FB00C3D5D1 /* Other Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -285,15 +307,6 @@
 				278FBAED19A6D68600FC41C4 /* testFile.txt */,
 			);
 			name = "Supporting Files";
-			sourceTree = "<group>";
-		};
-		279602D219742F9B009BAD41 /* AFNetworkActivityLogger */ = {
-			isa = PBXGroup;
-			children = (
-				279602D319742F9B009BAD41 /* AFNetworkActivityLogger.h */,
-				279602D419742F9B009BAD41 /* AFNetworkActivityLogger.m */,
-			);
-			path = AFNetworkActivityLogger;
 			sourceTree = "<group>";
 		};
 		27B9C23F17CBB9B500B8FA02 = {
@@ -391,7 +404,7 @@
 		27B9C28617CBBAD300B8FA02 /* Libraries */ = {
 			isa = PBXGroup;
 			children = (
-				279602D219742F9B009BAD41 /* AFNetworkActivityLogger */,
+				0C3DF5351E4228A500EA5C38 /* AFNetworkActivityLogger */,
 				27B9C28717CBBAD300B8FA02 /* AFNetworking */,
 			);
 			path = Libraries;
@@ -433,15 +446,18 @@
 				2756597018DFF46000C3D5D1 /* Catalyze.h in Headers */,
 				274A9FC719AC162800DB7039 /* CatalyzeFileManager.h in Headers */,
 				2756597118DFF46A00C3D5D1 /* CatalyzeConstants.h in Headers */,
+				0C3DF5431E4228F000EA5C38 /* AFNetworkActivityLoggerProtocol.h in Headers */,
 				2756597218DFF47100C3D5D1 /* CatalyzeObjectProtocol.h in Headers */,
 				2756597718DFF48F00C3D5D1 /* CatalyzeHTTPManager.h in Headers */,
 				2756597318DFF47D00C3D5D1 /* CatalyzeEntry.h in Headers */,
+				0C3DF53B1E4228F000EA5C38 /* AFNetworkActivityConsoleLogger.h in Headers */,
 				2756597418DFF47F00C3D5D1 /* CatalyzeReference.h in Headers */,
 				2756597518DFF48900C3D5D1 /* CatalyzeQuery.h in Headers */,
 				2756597818DFF49300C3D5D1 /* CatalyzeUser.h in Headers */,
 				2756597918DFF49700C3D5D1 /* Email.h in Headers */,
 				2756597A18DFF49900C3D5D1 /* Name.h in Headers */,
 				2756597B18DFF49C00C3D5D1 /* PhoneNumber.h in Headers */,
+				0C3DF53F1E4228F000EA5C38 /* AFNetworkActivityLogger.h in Headers */,
 				2756597C18DFF49D00C3D5D1 /* Address.h in Headers */,
 				2756597D18DFF4A400C3D5D1 /* Geocode.h in Headers */,
 				2756597E18DFF4A800C3D5D1 /* Guardian.h in Headers */,
@@ -611,6 +627,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0C3DF5411E4228F000EA5C38 /* AFNetworkActivityLogger.m in Sources */,
+				0C3DF53D1E4228F000EA5C38 /* AFNetworkActivityConsoleLogger.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -624,7 +642,6 @@
 				274833CE19A3E68B00F3B940 /* CatalyzeEntry.m in Sources */,
 				274833E419A3E6AE00F3B940 /* AFURLConnectionOperation.m in Sources */,
 				278FBAEC19A6D5A700FC41C4 /* CatalyzeFileManager.m in Sources */,
-				274833DE19A3E6A400F3B940 /* AFNetworkActivityLogger.m in Sources */,
 				274833DC19A3E69900F3B940 /* HealthPlan.m in Sources */,
 				274833D819A3E69900F3B940 /* Guardian.m in Sources */,
 				271D663A19AFB571004FED88 /* CatalyzeQueryTest.m in Sources */,
@@ -632,6 +649,7 @@
 				274833CD19A3E68B00F3B940 /* CatalyzeHTTPManager.m in Sources */,
 				274833CC19A3E68100F3B940 /* Catalyze.m in Sources */,
 				274833DF19A3E6AE00F3B940 /* AFHTTPRequestOperation.m in Sources */,
+				0C3DF5421E4228F000EA5C38 /* AFNetworkActivityLogger.m in Sources */,
 				274833D419A3E69900F3B940 /* Name.m in Sources */,
 				278FBAEB19A6CF7300FC41C4 /* CatalyzeFileManagerTest.m in Sources */,
 				274833E219A3E6AE00F3B940 /* AFNetworkReachabilityManager.m in Sources */,
@@ -639,6 +657,7 @@
 				274833E719A3E6AE00F3B940 /* AFURLSessionManager.m in Sources */,
 				274A9FBF19ABEC6D00DB7039 /* CatalyzeUserTest.m in Sources */,
 				274833E019A3E6AE00F3B940 /* AFHTTPRequestOperationManager.m in Sources */,
+				0C3DF53E1E4228F000EA5C38 /* AFNetworkActivityConsoleLogger.m in Sources */,
 				274833E119A3E6AE00F3B940 /* AFHTTPSessionManager.m in Sources */,
 				274833DD19A3E69900F3B940 /* JSONObject.m in Sources */,
 				274833E619A3E6AE00F3B940 /* AFURLResponseSerialization.m in Sources */,
@@ -663,9 +682,11 @@
 			files = (
 				27CFF38A18DF95B700004FEE /* Email.m in Sources */,
 				27B9C28017CBBAC600B8FA02 /* Catalyze.m in Sources */,
+				0C3DF53C1E4228F000EA5C38 /* AFNetworkActivityConsoleLogger.m in Sources */,
 				274A9FC419ABF27A00DB7039 /* NSObject+Properties.m in Sources */,
 				27B9C28117CBBAC600B8FA02 /* CatalyzeHTTPManager.m in Sources */,
 				27B9C28217CBBAC600B8FA02 /* CatalyzeEntry.m in Sources */,
+				0C3DF5401E4228F000EA5C38 /* AFNetworkActivityLogger.m in Sources */,
 				279602EE19743284009BAD41 /* AFURLConnectionOperation.m in Sources */,
 				279602ED19743284009BAD41 /* AFSecurityPolicy.m in Sources */,
 				27B9C28317CBBAC600B8FA02 /* CatalyzeQuery.m in Sources */,
@@ -674,7 +695,6 @@
 				27CFF3A518DF991F00004FEE /* HealthPlan.m in Sources */,
 				27CFF39918DF984600004FEE /* Guardian.m in Sources */,
 				27CFF39618DF96DF00004FEE /* Geocode.m in Sources */,
-				279602D519742F9B009BAD41 /* AFNetworkActivityLogger.m in Sources */,
 				27CFF39C18DF98A100004FEE /* Language.m in Sources */,
 				278FBAF119A79FE900FC41C4 /* CatalyzeObject.m in Sources */,
 				279602EA19743284009BAD41 /* AFHTTPRequestOperationManager.m in Sources */,
